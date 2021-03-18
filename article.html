@@ -78,8 +78,8 @@
 
             </div>
             <div class="article_links">
-                上一篇： <a href="#">世界第一台可以玩游戏的冰箱</a><br>
-                下一篇： <a href="#">世界第一个可以玩游戏的马桶、世界上第一个可以玩游戏的茶杯</a>
+                上一篇： <a href="#" id="prev">世界第一台可以玩游戏的冰箱</a><br>
+                下一篇： <a href="#" id="next">世界第一个可以玩游戏的马桶、世界上第一个可以玩游戏的茶杯</a>
             </div>
 
             <form action="" class="comment_form">
@@ -259,6 +259,19 @@
         ({{data.read}})&nbsp;&nbsp;&nbsp;评论: ({{data.comments}})
     </script>
 
+
+    <!-- 2.评论列表模板 -->
+    <script id="comment" type="text/html">
+    {{ each data item }}
+    <div class="comment_detail_list">
+        <div class="person_pic fl">{{ item.author.substr(0,1) }}</div>
+        <div class="name_time fl"><b>{{ item.author }}</b><span>{{ item.date }}</span></div>
+        <div class="comment_text fl">
+            {{ item.content }}
+        </div>
+    </div>
+    {{ /each }}
+    </script>
     <script src="./js/jquery-1.12.4.min.js"></script>
     <script src="./js/baseAPI.js"></script>
     <script src="./js/article.js"></script>
