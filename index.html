@@ -225,8 +225,83 @@
 
     <!-- 导入模板引擎js文件 -->
     <script src="./js/template-web.js"></script>
+
+    <!-- 热点图的模板 -->
+    <script type="text/html" id="focus_list">
+    {{ each data item index }}
+    {{ if index == 0 }}
+        <li class="first">
+    {{ else }}
+        <li>
+    {{ /if }}
+            <a href="./article.html?id={{ item.id }}"><img src="{{ item.cover }}" alt=""></a>
+            <p>{{ item.title}}</p>
+        </li>
+    {{ /each }}
+    </script>
+
+    <!-- 一周热门排行 -->
+    <script type="text/html" id="hot_list">
+    {{ each data item index}}
+        <li>  
+    {{ if index ==0 }}  
+            <span class="first">1</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+    {{ else if index ==1 }}
+            <span class="second">2</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+    {{ else if index ==2 }}
+            <span class="third">3</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+    {{ /if }}
+            <span>{{ index + 1 }}</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+        </li>
+    {{ /each }}
+    </script>
+
+
+    <!-- 焦点关注 -->
+    <script type="text/html" id="Focus">
+        {{ each data item}}
+            <li>
+                <a href="./article.html?id={{ item.id }}">{{ item.intro }}</a>
+            </li>
+        {{ /each }}
+    </script>
+
+    <!-- 最新评论 -->
+    <script type="text/html" id="Comment">
+        {{ each data item }}
+            <li>
+                <span>{{ item.author.substr(0,1) }}</span>
+                <b><em>{{ item.author }}</em> {{ item.time }}</b>
+                <strong>{{ item.intro }}</strong>
+            </li>
+        {{ /each }}
+    </script>
+
+    <!-- 最新资讯 -->
+    <script type="text/html" id="CommentNews">
+        {{ each data item }}
+        <div class="common_news_list">
+            <a href="#" class="list_pic"><img src="{{ item.cover }}" alt=""></a>
+            <h4><a href="./article.html?id={{ item.id }}">{{ item.title }}</a></h4>
+            <p>{{ item.intro }}</p>
+            <div class="new_info">
+                <span>标签：{{ item.category }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{ item.read }}
+                    )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{ item.comments }} )</span>
+            <b>发布于{{ item.date }}</b>
+            </div>
+        </div>
+        {{ /each }}
+    </script>
     <!-- 引入jq文件 -->
     <script src="./js/jquery-1.12.4.min.js"></script>
+    <!-- 引入baseAPI -->
+    <script src="./js/baseAPI.js"></script>
+    <!-- 引入本页js -->
+    <script src="./js/index.js"></script>
 </body>
 
 </html>
