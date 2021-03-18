@@ -60,7 +60,9 @@
             </div>
             <h3 class="article_title">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</h3>
             <div class="article_info">杰克 发布于 2019-05-08 07:08:46&nbsp;&nbsp;&nbsp;分类: 奇趣事&nbsp;&nbsp;&nbsp;阅读:
-                (98)&nbsp;&nbsp;&nbsp;评论: (0)</div>
+                (98)&nbsp;&nbsp;&nbsp;评论: (0)
+            </div>
+
             <div class="article_con">
 
                 <p>“上天入地”还不够？硅谷“钢铁侠”马斯克名下一家低调的公司最近又融了一大笔钱。</p>
@@ -132,7 +134,7 @@
         <div class="right_con setfl">
             <div class="common_wrap">
                 <h3><i class="fa fa-bar-chart"></i> 一周热门排行</h3>
-                <ul class="content_list">
+                <ul class="content_list" id="HotList">
                     <li><span class="first">1</span><a href="#">神奇的水滴摄影，泡泡中的世界泡泡中的世界</a></li>
                     <li><span class="second">2</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
                     <li><span class="third">3</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
@@ -208,7 +210,58 @@
 
     <!-- 引入模板引擎js文件 -->
     <script src="./js/template-web.js"></script>
+
+    <!-- 一周热门排行 -->
+    <script type="text/html" id="hot_list">
+    {{ each data item index}}
+        <li>  
+    {{ if index ==0 }}  
+            <span class="first">1</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+    {{ else if index ==1 }}
+            <span class="second">2</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+    {{ else if index ==2 }}
+            <span class="third">3</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+    {{ /if }}
+            <span>{{ index + 1 }}</span>
+            <a href="./article.html?id={{ item.id }}">{{ item.title }}</a>
+        </li>
+    {{ /each }}
+    </script>
+
+    <!-- 最新评论 -->
+    <script type="text/html" id="Comment">
+    {{ each data item }}
+        <li>
+            <span>{{ item.author.substr(0,1) }}</span>
+            <b><em>{{ item.author }}</em> {{ item.time }}</b>
+            <strong>{{ item.intro }}</strong>
+        </li>
+    {{ /each }}
+    </script>
+
+
+    <!-- 焦点关注 -->
+    <script type="text/html" id="Focus">
+        {{ each data item}}
+            <li>
+                <a href="./article.html?id={{ item.id }}">{{ item.intro }}</a>
+            </li>
+        {{ /each }}
+    </script>
+
+
+    <!-- 文章详情 -->
+    <script type="text/html" id="listInfo">
+        {{data.author}} 发布于 {{data.date}}&nbsp;&nbsp;&nbsp;分类: {{data.category}}&nbsp;&nbsp;&nbsp;阅读:
+        ({{data.read}})&nbsp;&nbsp;&nbsp;评论: ({{data.comments}})
+    </script>
+
     <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./js/baseAPI.js"></script>
+    <script src="./js/article.js"></script>
 
 </body>
 
