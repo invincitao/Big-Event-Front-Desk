@@ -247,6 +247,23 @@
     {{ /each }}
     </script>
 
+
+    <!-- 搜索 -->
+    <script type="text/html" id="Search">
+        {{ each data.data item }}
+        <div class="common_news_list">
+            <a href="#" class="list_pic"><img src="{{ item.cover }}" alt=""></a>
+            <h4><a href="./article.html?id={{ item.id }}">{{ item.title }}</a></h4>
+            <p>{{ item.intro }}</p>
+            <div class="new_info">
+                <span>标签：{{ item.category }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{ item.read }}
+                    )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{ item.comments }} )</span>
+            <b>发布于{{ item.date }}</b>
+            </div>
+        </div>
+        {{ /each }}
+    </script>
+
     <!-- 一周热门排行 -->
     <script type="text/html" id="hot_list">
         {{ each data item index}}

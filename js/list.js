@@ -67,14 +67,9 @@ $(function () {
             },
             success: (res) => {
                 console.log(res);
-                // $('.common_news').html(template('CommentNews', { data: res.item }))
-                let htmlStr = template('CommentNews', { data: res.data })
+                let htmlStr = template('Search', res)
                 $('.common_news').html(htmlStr);
             }
         })
-        //页面一加载：默认搜索全部
-        $('.search_btn').trigger('click');
     })
-
-
 })

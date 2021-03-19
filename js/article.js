@@ -52,15 +52,14 @@ $(function () {
             data: { id: id },
             success: (res) => {
                 console.log("文章详情", res);
-
-                $('.article_title').text(res.data.title);
-                $('.article_con').html(res.data.content);
-                let htmlStr = template('listInfo', res);
-                $('.article_info').html(htmlStr);
-                $('#prev').text(res.data.prev.title)
-                $('#next').text(res.data.next.title)
-                // $('#prev').href = `/article.html?id={{ res.data.prev.id }}`;
-                // $('#next').href = `/article.html?id={{ res.data.next.id }}`;
+                if (res.code == 200) {
+                    $('.article_title').text(res.data.title);
+                    $('.article_con').html(res.data.content);
+                    let htmlStr = template('listInfo', res);
+                    $('.article_info').html(htmlStr);
+                    $('#prev').text(res.data.prev.title)
+                    $('#next').text(res.data.next.title)
+                }
             }
         })
     };
@@ -75,12 +74,8 @@ $(function () {
                 articleId: id
             },
             success: function (res) {
-                console.log('contentList ', res);
-                // $('.comment_list_con').html(template('comment', res));
                 let htmlStr = template('comment', { data: res.data })
                 $('.comment_list_con').html(htmlStr);
-                // //根据数组长度显示评论条数
-                // // $('.comment_count').text(res.data.length + '条评论');
                 $('.comment_count').text(res.data.length + '条评论');
             }
         });
@@ -110,5 +105,8 @@ $(function () {
                 location.reload();
             }
         })
-    })
+    });
+
+    // 搜索
+
 })
